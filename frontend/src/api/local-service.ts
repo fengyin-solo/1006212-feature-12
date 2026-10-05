@@ -28,6 +28,11 @@ export function listEntries(key: string, filters: Record<string, string> = {}): 
   return { items: matched, total: matched.length, page: 1, size: matched.length }
 }
 
+/** 不经筛选的全量记录：供合计、总量自检等页面口径使用。 */
+export function listAllRows(key: string): EntryRow[] {
+  return listRows(key)
+}
+
 export function runAction(key: string, id: number, action: string): ActionResult {
   const meta = moduleMeta(key)
   const target = meta.actionTargets[action]

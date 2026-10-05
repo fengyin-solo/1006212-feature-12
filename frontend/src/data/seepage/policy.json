@@ -1,0 +1,45 @@
+{
+  "version": "2026.10.05-seepage-v1",
+  "window": {
+    "start": "2026-01-01",
+    "end": "2026-01-31",
+    "slotsPerDay": 2,
+    "slotNames": ["上午", "下午"]
+  },
+  "dedupeKey": ["测点编号", "监测日期", "监测时段"],
+  "gapTiers": {
+    "halfDay": {
+      "minSlots": 1,
+      "maxSlots": 1,
+      "label": "半天",
+      "method": "linear",
+      "note": "连续中断1个时段（半天）：按相邻时段线性内插补齐"
+    },
+    "oneDay": {
+      "minSlots": 2,
+      "maxSlots": 5,
+      "label": "一天",
+      "method": "linear",
+      "note": "连续中断2~5个时段（1天以上、3天以内，含2天）：按前后有效读数线性内插补齐"
+    },
+    "longGap": {
+      "minSlots": 6,
+      "label": "三天以上",
+      "method": "keepMissing",
+      "note": "连续中断6个时段及以上（连续3天及以上）：不补数值，按缺测处理，保留原始缺测标记"
+    }
+  },
+  "thresholds": {
+    "测压管水位": { "unit": "m", "warn": 245.0, "alarm": 248.0 },
+    "渗流量": { "unit": "L/s", "warn": 2.5, "alarm": 3.2 },
+    "扬压力": { "unit": "kPa", "warn": 180, "alarm": 200 }
+  },
+  "legacyBackfill": {
+    "order": "同一测点按监测日期升序；早期未写监测日期的存量记录，按测点编号、再按原始登记顺序回填到该测点序列最早可用时段（每条约占半天）。",
+    "note": "回填记录保留『早期缺监测日期，按登记顺序回填』备注，数值沿用原始台账，不做插值。"
+  },
+  "authority": {
+    "canonical": "processed",
+    "note": "以按本口径去重、回填、补缺后的 processed 结果为唯一权威初始化数据；原始观测、被拒收的重复提交、三天以上缺测仅在 data/export 留痕，不进入页面台账。"
+  }
+}

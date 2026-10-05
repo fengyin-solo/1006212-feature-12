@@ -1,5 +1,6 @@
 services:
   frontend:
     build: ./frontend
+    # 部署构建走多阶段 Dockerfile（静态产物 + nginx），与本地开发共用同一份初始化数据与口径校验
     ports:
-      - "5173:5173"
+      - "8080:80"

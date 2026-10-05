@@ -5,7 +5,11 @@
   "type": "module",
   "repoKind": "frontend-only",
   "scripts": {
+    "seed:build": "node scripts/build-seepage.mjs",
+    "seed:check": "node scripts/check-seed.mjs",
+    "predev": "node scripts/check-seed.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/check-seed.mjs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit"

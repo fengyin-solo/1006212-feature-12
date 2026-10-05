@@ -75,6 +75,7 @@ import { computed, onMounted, ref } from 'vue'
 
 import {
   downloadEntries,
+  listAllRows,
   listEntries,
   moduleMeta,
   runAction as applyAction,
@@ -85,9 +86,9 @@ const meta = moduleMeta('bearing')
 const columns = ["轴承编号", "所属机组", "上导温度", "下导温度", "油位高度", "振动数值", "检测日期", "轴承状态"]
 const actions = ["提交检测", "标记偏高", "确认检修"]
 const statuses = ["正常", "温度偏高", "待检修", "已检修"]
-const stats = [{"label": "正常轴承", "value": 0}, {"label": "温度偏高轴承", "value": 0}, {"label": "待检修轴承", "value": 0}]
 
 const rows = ref<EntryRow[]>([])
+const allRowsRef = ref<EntryRow[]>([])
 const total = ref(0)
 const errorMessage = ref('')
 const filters = ref<Record<string, string>>({})
@@ -98,6 +99,13 @@ const statusSummary = computed(() =>
     count: rows.value.filter((row) => String(row.status) === status).length,
   })),
 )
+
+// 待办清单口径：pending=true 即待办；台数与运营概览入口同源（同一份 generated seed）
+const stats = computed(() => [
+  { label: "正常轴承", value: allRowsRef.value.filter((row) => String(row.status) === "正常").length },
+  { label: "温度偏高轴承", value: allRowsRef.value.filter((row) => String(row.status) === "温度偏高").length },
+  { label: "待检修轴承", value: allRowsRef.value.filter((row) => row.pending).length },
+])
 
 function resetFilters() {
   filters.value = {}
@@ -125,6 +133,7 @@ function runAction(action: string, row: EntryRow) {
 function reload() {
   errorMessage.value = ''
   try {
+    allRowsRef.value = listAllRows(meta.key)
     const payload = listEntries(meta.key, filters.value)
     rows.value = payload.items
     total.value = payload.total
