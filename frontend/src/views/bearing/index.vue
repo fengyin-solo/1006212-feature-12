@@ -82,16 +82,21 @@ import {
 import type { EntryRow } from '@/data/types'
 
 const meta = moduleMeta('bearing')
-const columns = ["轴承编号", "所属机组", "上导温度", "下导温度", "油位高度", "振动数值", "检测日期", "轴承状态"]
+const columns = ["轴承编号", "所属机组", "轴承部位", "上导温度", "下导温度", "油位高度", "振动数值", "检测日期", "轴承状态"]
 const actions = ["提交检测", "标记偏高", "确认检修"]
 const statuses = ["正常", "温度偏高", "待检修", "已检修"]
-const stats = [{"label": "正常轴承", "value": 0}, {"label": "温度偏高轴承", "value": 0}, {"label": "待检修轴承", "value": 0}]
 
 const rows = ref<EntryRow[]>([])
 const total = ref(0)
 const errorMessage = ref('')
 const filters = ref<Record<string, string>>({})
 const filterFields = columns.slice(0, 3)
+// 待办清单：温度偏高 + 待检修，台数随导轴承清单重建而变
+const stats = computed(() => [
+  { label: "导轴承总数", value: rows.value.length },
+  { label: "温度偏高", value: rows.value.filter((r) => String(r.status) === "温度偏高").length },
+  { label: "待检修待办", value: rows.value.filter((r) => r.pending).length },
+])
 const statusSummary = computed(() =>
   statuses.map((status: string) => ({
     status,

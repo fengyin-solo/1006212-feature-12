@@ -85,13 +85,17 @@ const meta = moduleMeta('station')
 const columns = ["电站编号", "电站名称", "装机容量", "机组台数", "设计水头", "投运日期", "所属流域", "运行状态"]
 const actions = ["投入试运行", "确认投产", "申请停机"]
 const statuses = ["在建", "试运行", "正常运行", "停机检修"]
-const stats = [{"label": "总装机容量", "value": 0}, {"label": "正常运行电站", "value": 0}, {"label": "检修中电站", "value": 0}]
 
 const rows = ref<EntryRow[]>([])
 const total = ref(0)
 const errorMessage = ref('')
 const filters = ref<Record<string, string>>({})
 const filterFields = columns.slice(0, 3)
+const stats = computed(() => [
+  { label: "电站总数", value: rows.value.length },
+  { label: "总装机容量(MW)", value: rows.value.reduce((s, r) => s + Number(r['装机容量'] || 0), 0) },
+  { label: "机组台数合计", value: rows.value.reduce((s, r) => s + Number(r['机组台数'] || 0), 0) },
+])
 const statusSummary = computed(() =>
   statuses.map((status: string) => ({
     status,

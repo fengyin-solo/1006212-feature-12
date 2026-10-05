@@ -1,5 +1,16 @@
 services:
-  frontend:
-    build: ./frontend
+  # 本地开发：与 npm run dev 同一条流水线（predev 会校验初始化产物）。
+  frontend-dev:
+    build:
+      context: ./frontend
+      target: development
     ports:
       - "5173:5173"
+
+  # 部署：构建时重建并校验初始数据，nginx 托管与本地同源的静态产物。
+  frontend:
+    build:
+      context: ./frontend
+      target: deploy
+    ports:
+      - "8080:80"

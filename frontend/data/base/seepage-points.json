@@ -1,0 +1,11 @@
+{
+  "comment": "渗流测点基础台账（基线数据，手工维护）：生成器按这份点位台账与监测日期重建示例数据。code 即页面测点编号，name 即测点位置。",
+  "points": [
+    { "code": "SEEP-0001", "name": "坝基渗压计P1", "section": "坝0+120m坝基", "type": "坝基渗流", "baseLevel": 241.2, "baseFlow": 0.62, "baseUplift": 118, "drift": 0.006, "seed": 11 },
+    { "code": "SEEP-0002", "name": "坝基渗压计P2", "section": "坝0+180m坝基", "type": "坝基渗流", "baseLevel": 240.6, "baseFlow": 0.58, "baseUplift": 112, "drift": 0.005, "seed": 23 },
+    { "code": "SEEP-0003", "name": "坝基渗压计P3", "section": "坝0+240m坝基", "type": "坝基渗流", "baseLevel": 240.1, "baseFlow": 0.54, "baseUplift": 108, "drift": 0.004, "seed": 37 },
+    { "code": "SEEP-0004", "name": "左岸绕坝渗流R1", "section": "左岸坝肩12号洞", "type": "绕坝渗流", "baseLevel": 243.4, "baseFlow": 1.05, "baseUplift": 132, "drift": 0.008, "seed": 41 },
+    { "code": "SEEP-0005", "name": "右岸绕坝渗流R2", "section": "右岸坝肩07号洞", "type": "绕坝渗流", "baseLevel": 242.8, "baseFlow": 0.98, "baseUplift": 126, "drift": 0.007, "seed": 53 },
+    { "code": "SEEP-0006", "name": "坝后量水堰W1", "section": "坝后排水沟出口", "type": "量水堰", "baseLevel": 239.6, "baseFlow": 1.72, "baseUplift": 96, "drift": 0.005, "seed": 67 }
+  ]
+}

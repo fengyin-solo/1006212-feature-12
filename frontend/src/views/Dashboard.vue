@@ -29,7 +29,7 @@
       </tbody>
     </table>
     <footer class="page-foot">
-      <span>数据保存在本机浏览器里，换浏览器或清缓存会回到示例数据</span>
+      <span>数据保存在本机浏览器里（hydropower-plant-om:entries:v2），换浏览器或清缓存会回到初始化数据；初始数据由 data/base 经统一口径生成，本地与部署同源</span>
     </footer>
   </section>
 </template>

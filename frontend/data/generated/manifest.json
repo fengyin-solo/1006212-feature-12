@@ -1,0 +1,68 @@
+{
+  "policyVersion": "2026.1-seepage-v1",
+  "generatedAt": "deterministic",
+  "window": {
+    "start": "2026-01-01",
+    "end": "2026-01-31",
+    "slotsPerDay": 2
+  },
+  "slotsPerDay": 2,
+  "pointCount": 6,
+  "seepageRecordCount": 374,
+  "seepageFlowTotal": 334.81,
+  "seepageUpliftTotal": 42779.5,
+  "gapBuckets": {
+    "halfDay": 1,
+    "oneDay": 2,
+    "overThreeDay": 26
+  },
+  "statusCounts": {
+    "正常": 367,
+    "预警": 5,
+    "报警": 2
+  },
+  "stationCount": 3,
+  "unitCount": 3,
+  "unitCountByStation": {
+    "STAT-0001": 2,
+    "STAT-0002": 1,
+    "STAT-0003": 0
+  },
+  "bearingCount": 6,
+  "bearingPending": 3,
+  "dedupe": {
+    "seepage": {
+      "dropped": 0
+    },
+    "station": {
+      "dropped": 0
+    },
+    "unit": {
+      "dropped": 0
+    },
+    "bearing": {
+      "dropped": 0
+    }
+  },
+  "csvColumns": [
+    "测点编号",
+    "测点位置",
+    "测点断面",
+    "测压管水位",
+    "渗流量",
+    "扬压力",
+    "警戒数值",
+    "监测日期",
+    "监测时间",
+    "原始缺测",
+    "缺测处理",
+    "补测标记",
+    "测点状态"
+  ],
+  "checksums": {
+    "seed-seepage.json": "668f948c6f4746df37430ff932ef071dffbc53cedc417341466a901e1b578036",
+    "seed-station.json": "666cf8f576bafd4a80e7540a18e654f0ea1683261b1314ff7c7b0445967ddd31",
+    "seed-unit.json": "a3cafba34a079c554f1ec088bc8c6355ba087c898f18db7be86a99d581dce1b6",
+    "seed-bearing.json": "91249f731f94419638200e922aad2fb3cc2a4afd364122e9087221973010a72c"
+  }
+}

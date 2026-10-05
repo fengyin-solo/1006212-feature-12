@@ -5,7 +5,12 @@
   "type": "module",
   "repoKind": "frontend-only",
   "scripts": {
+    "seed:build": "node scripts/build-seed.mjs",
+    "seed:verify": "node scripts/verify-seed.mjs",
+    "seed:rebuild": "node scripts/build-seed.mjs && node scripts/verify-seed.mjs",
+    "predev": "node scripts/verify-seed.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/build-seed.mjs && node scripts/verify-seed.mjs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit"
